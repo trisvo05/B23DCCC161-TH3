@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, Space } from 'antd';
 import type { TodoItem } from '@/services/todo';
 import { FC } from 'react';
 
@@ -13,7 +13,7 @@ const TodoForm: FC<TodoFormProps> = ({ initialValues, onSubmit }) => {
 	return (
 		<Form form={form} initialValues={initialValues} onFinish={onSubmit} layout='vertical'>
 			<Form.Item name='title' label='Title' rules={[{ required: true, message: 'Please input todo title!' }]}>
-				<Input />
+				<Input placeholder='Enter todo title' />
 			</Form.Item>
 
 			<Form.Item
@@ -21,17 +21,20 @@ const TodoForm: FC<TodoFormProps> = ({ initialValues, onSubmit }) => {
 				label='Description'
 				rules={[{ required: true, message: 'Please input todo description!' }]}
 			>
-				<Input.TextArea />
+				<Input.TextArea placeholder='Enter todo description' rows={4} />
 			</Form.Item>
 
 			<Form.Item name='completed' valuePropName='checked'>
-				<Checkbox>Completed</Checkbox>
+				<Checkbox>Mark as completed</Checkbox>
 			</Form.Item>
 
 			<Form.Item>
-				<Button type='primary' htmlType='submit'>
-					{initialValues ? 'Update' : 'Add'} Todo
-				</Button>
+				<Space>
+					<Button type='primary' htmlType='submit'>
+						{initialValues ? 'Update' : 'Add'} Todo
+					</Button>
+					<Button onClick={() => form.resetFields()}>Reset</Button>
+				</Space>
 			</Form.Item>
 		</Form>
 	);

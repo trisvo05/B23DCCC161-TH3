@@ -1,85 +1,76 @@
-import { Table, Button, Modal, message } from 'antd';
+import { Button, Modal, message, Card, Row, Col } from 'antd';
 import { useModel } from 'umi';
 import TodoForm from './components/TodoForm';
 import type { TodoItem } from '@/services/todo';
 import { FC, useState } from 'react';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 
 const TodoList: FC = () => {
 	const { todos, addTodo, updateTodo, deleteTodo } = useModel('todo');
 	const [visible, setVisible] = useState(false);
 	const [editingTodo, setEditingTodo] = useState<TodoItem | null>(null);
 
-	const columns = [
-		{
-			title: 'Title',
-			dataIndex: 'title',
-			key: 'title',
-			align: 'center',
-		},
-		{
-			title: 'Description',
-			dataIndex: 'description',
-			key: 'description',
-			align: 'center',
-		},
-		{
-			title: 'Status',
-			dataIndex: 'completed',
-			key: 'completed',
-			align: 'center',
-			render: (completed: boolean) => (completed ? 'Completed' : 'Pending'),
-		},
-		{
-			title: 'Created At',
-			dataIndex: 'createdAt',
-			key: 'createdAt',
-			align: 'center',
-			render: (date: string) => new Date(date).toLocaleDateString(),
-		},
-		{
-			title: 'Actions',
-			key: 'actions',
-			align: 'center',
-			render: (_, record: TodoItem) => (
-				<>
-					<Button
-						type='link'
-						onClick={() => {
-							setEditingTodo(record);
-							setVisible(true);
-						}}
+	// Grid view of todos
+	const TodoGrid = () => (
+		<Row gutter={[16, 16]}>
+			{todos.map((todo: TodoItem) => (
+				<Col xs={24} sm={12} md={8} lg={6} key={todo.id}>
+					<Card
+						hoverable
+						title={todo.title}
+						extra={
+							todo.completed ? (
+								<span style={{ color: '#52c41a' }}>Completed</span>
+							) : (
+								<span style={{ color: '#faad14' }}>Pending</span>
+							)
+						}
+						actions={[
+							<EditOutlined
+								key='edit'
+								onClick={() => {
+									setEditingTodo(todo);
+									setVisible(true);
+								}}
+							/>,
+							<DeleteOutlined
+								key='delete'
+								onClick={() => {
+									deleteTodo(todo.id);
+									message.success('Todo deleted successfully');
+								}}
+							/>,
+						]}
 					>
-						Edit
-					</Button>
-					<Button
-						type='link'
-						danger
-						onClick={() => {
-							deleteTodo(record.id);
-							message.success('Todo deleted successfully');
-						}}
-					>
-						Delete
-					</Button>
-				</>
-			),
-		},
-	];
+						<p>{todo.description}</p>
+						<p style={{ color: '#8c8c8c', fontSize: '12px' }}>
+							Created: {new Date(todo.createdAt).toLocaleDateString()}
+						</p>
+					</Card>
+				</Col>
+			))}
+		</Row>
+	);
 
 	return (
 		<div style={{ padding: 24 }}>
-			<Button
-				type='primary'
-				onClick={() => {
-					setEditingTodo(null);
-					setVisible(true);
-				}}
-				style={{ marginBottom: 16 }}
+			<Card
+				title='Todo List'
+				extra={
+					<Button
+						type='primary'
+						icon={<PlusOutlined />}
+						onClick={() => {
+							setEditingTodo(null);
+							setVisible(true);
+						}}
+					>
+						Add Todo
+					</Button>
+				}
 			>
-				Add Todo
-			</Button>
-
-			<Table dataSource={todos} columns={columns} rowKey='id' pagination={{ pageSize: 10 }} />
+				<TodoGrid />
+			</Card>
 
 			<Modal
 				title={editingTodo ? 'Edit Todo' : 'Add Todo'}
