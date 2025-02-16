@@ -3,15 +3,15 @@ import type { TodoItem } from '@/services/todo';
 import { FC } from 'react';
 
 interface TodoFormProps {
-	initialValues?: TodoItem | null;
-	onSubmit: (values: Partial<TodoItem>) => void;
+	initialValues?: Partial<TodoItem>;
+	onSubmit: (values: Omit<TodoItem, 'id' | 'createdAt'>) => void;
 }
 
 const TodoForm: FC<TodoFormProps> = ({ initialValues, onSubmit }) => {
 	const [form] = Form.useForm();
 
 	return (
-		<Form form={form} initialValues={initialValues} onFinish={onSubmit} layout='vertical'>
+		<Form form={form} initialValues={initialValues || {}} onFinish={onSubmit} layout='vertical'>
 			<Form.Item name='title' label='Title' rules={[{ required: true, message: 'Please input todo title!' }]}>
 				<Input placeholder='Enter todo title' />
 			</Form.Item>

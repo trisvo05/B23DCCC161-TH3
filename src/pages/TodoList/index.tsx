@@ -89,7 +89,11 @@ const TodoList: FC = () => {
 							updateTodo(editingTodo.id, values);
 							message.success('Todo updated successfully');
 						} else {
-							addTodo(values);
+							addTodo({
+								title: values.title,
+								description: values.description,
+								completed: values.completed || false,
+							});
 							message.success('Todo added successfully');
 						}
 						setVisible(false);
