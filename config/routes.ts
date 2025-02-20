@@ -38,10 +38,23 @@
 	},
 
 	{
-		path: '/todo',
-		name: 'Todo List',
+		path: '/toDo',
+		name: 'To Do List',
 		component: './TodoList',
 		icon: 'CheckSquareOutlined',
+	},
+
+	{
+		path: '/hoc-tap',
+		name: 'Học tập',
+		icon: 'EditOutlined',
+		routes: [
+			{
+				path: '/hoc-tap/tien-trinh-hoc-tap',
+				name: 'Tiến trình học tập',
+				component: './TienTrinhHocTap',
+			},
+		],
 	},
 
 	// DANH MUC HE THONG
