@@ -3,7 +3,7 @@ import type { TodoItem } from '@/services/todo';
 import { FC } from 'react';
 
 interface TodoFormProps {
-	initialValues?: Partial<TodoItem>;
+	initialValues?: Partial<TodoItem> | null;
 	onSubmit: (values: Omit<TodoItem, 'id' | 'createdAt'>) => void;
 }
 
