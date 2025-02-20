@@ -2,14 +2,14 @@ import { useState, useCallback } from 'react';
 import type { StudyProgressItem } from '@/services/studyprogress';
 
 export default function useStudyProgressModel() {
-	const [StudyProgress, setStudyProgress] = useState<StudyProgressItem[]>(() => {
-		const saved = localStorage.getItem('StudyProgress');
+	const [studyProgresses, setStudyProgresses] = useState<StudyProgressItem[]>(() => {
+		const saved = localStorage.getItem('studyProgresses');
 		return saved ? JSON.parse(saved) : [];
 	});
 
-	const saveStudyProgress = useCallback((newStudyProgress: StudyProgressItem[]) => {
-		localStorage.setItem('StudyProgress', JSON.stringify(newStudyProgress));
-		setStudyProgress(newStudyProgress);
+	const saveStudyProgresses = useCallback((newStudyProgresses: StudyProgressItem[]) => {
+		localStorage.setItem('studyProgresses', JSON.stringify(newStudyProgresses));
+		setStudyProgresses(newStudyProgresses);
 	}, []);
 
 	const addStudyProgress = useCallback(
@@ -19,28 +19,30 @@ export default function useStudyProgressModel() {
 				id: Date.now().toString(),
 				createdAt: new Date().toISOString(),
 			};
-			saveStudyProgress([newStudyProgress, ...StudyProgress]);
+			saveStudyProgresses([newStudyProgress, ...studyProgresses]);
 		},
-		[StudyProgress, saveStudyProgress],
+		[studyProgresses, saveStudyProgresses],
 	);
 
 	const updateStudyProgress = useCallback(
 		(id: string, updates: Partial<StudyProgressItem>) => {
-			const newStudyProgress = StudyProgress.map((item) => (item.id === id ? { ...item, ...updates } : item));
-			saveStudyProgress(newStudyProgress);
+			const newStudyProgresses = studyProgresses.map((studyProgress) =>
+				studyProgress.id === id ? { ...studyProgress, ...updates } : studyProgress,
+			);
+			saveStudyProgresses(newStudyProgresses);
 		},
-		[StudyProgress, saveStudyProgress],
+		[studyProgresses, saveStudyProgresses],
 	);
 
 	const deleteStudyProgress = useCallback(
 		(id: string) => {
-			saveStudyProgress(StudyProgress.filter((item) => item.id !== id));
+			saveStudyProgresses(studyProgresses.filter((studyProgress) => studyProgress.id !== id));
 		},
-		[StudyProgress, saveStudyProgress],
+		[studyProgresses, saveStudyProgresses],
 	);
 
 	return {
-		StudyProgress,
+		studyProgresses,
 		addStudyProgress,
 		updateStudyProgress,
 		deleteStudyProgress,

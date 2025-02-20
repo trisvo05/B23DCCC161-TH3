@@ -52,7 +52,7 @@
 			{
 				path: '/hoc-tap/tien-trinh-hoc-tap',
 				name: 'Tiến trình học tập',
-				component: './TienTrinhHocTap',
+				component: './StudyProgress',
 			},
 		],
 	},

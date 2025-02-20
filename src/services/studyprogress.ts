@@ -12,17 +12,25 @@ export interface StudyProgressResponse {
 	success: boolean;
 }
 
+export interface StudyProgressParams {
+	subject?: string;
+	task?: string;
+	completed?: boolean;
+	pageSize?: number;
+	current?: number;
+}
+
 export interface StudyProgressService {
-	getStudyProgress: () => Promise<StudyProgressResponse>;
+	getStudyProgresses: () => Promise<StudyProgressResponse>;
 	addStudyProgress: (studyProgress: Omit<StudyProgressItem, 'id' | 'createdAt'>) => Promise<StudyProgressItem>;
 	updateStudyProgress: (id: string, studyProgress: Partial<StudyProgressItem>) => Promise<StudyProgressItem>;
 	deleteStudyProgress: (id: string) => Promise<boolean>;
 }
 
 const studyProgressService: StudyProgressService = {
-	getStudyProgress: async () => {
-		const studyProgress = localStorage.getItem('StudyProgress');
-		const data = studyProgress ? JSON.parse(studyProgress) : [];
+	getStudyProgresses: async () => {
+		const studyProgresses = localStorage.getItem('studyProgresses');
+		const data = studyProgresses ? JSON.parse(studyProgresses) : [];
 		return {
 			data,
 			total: data.length,
@@ -36,35 +44,35 @@ const studyProgressService: StudyProgressService = {
 			id: Date.now().toString(),
 			createdAt: new Date().toISOString(),
 		};
-		const existingData = localStorage.getItem('StudyProgress');
-		const existingStudyProgress = existingData ? JSON.parse(existingData) : [];
-		localStorage.setItem('StudyProgress', JSON.stringify([newStudyProgress, ...existingStudyProgress]));
+		const studyProgresses = localStorage.getItem('studyProgresses');
+		const existingStudyProgresses = studyProgresses ? JSON.parse(studyProgresses) : [];
+		localStorage.setItem('studyProgresses', JSON.stringify([newStudyProgress, ...existingStudyProgresses]));
 		return newStudyProgress;
 	},
 
 	updateStudyProgress: async (id, updates) => {
-		const existingData = localStorage.getItem('StudyProgress');
-		const existingStudyProgress: StudyProgressItem[] = existingData ? JSON.parse(existingData) : [];
-		const index = existingStudyProgress.findIndex((item) => item.id === id);
+		const studyProgresses = localStorage.getItem('studyProgresses');
+		const existingStudyProgresses: StudyProgressItem[] = studyProgresses ? JSON.parse(studyProgresses) : [];
+		const studyProgressIndex = existingStudyProgresses.findIndex((studyProgress) => studyProgress.id === id);
 
-		if (index === -1) {
+		if (studyProgressIndex === -1) {
 			throw new Error('Study progress not found');
 		}
 
-		const updatedItem = {
-			...existingStudyProgress[index],
+		const updatedStudyProgress = {
+			...existingStudyProgresses[studyProgressIndex],
 			...updates,
 		};
-		existingStudyProgress[index] = updatedItem;
-		localStorage.setItem('StudyProgress', JSON.stringify(existingStudyProgress));
-		return updatedItem;
+		existingStudyProgresses[studyProgressIndex] = updatedStudyProgress;
+		localStorage.setItem('studyProgresses', JSON.stringify(existingStudyProgresses));
+		return updatedStudyProgress;
 	},
 
 	deleteStudyProgress: async (id) => {
-		const existingData = localStorage.getItem('StudyProgress');
-		const existingStudyProgress: StudyProgressItem[] = existingData ? JSON.parse(existingData) : [];
-		const filteredItems = existingStudyProgress.filter((item) => item.id !== id);
-		localStorage.setItem('StudyProgress', JSON.stringify(filteredItems));
+		const studyProgresses = localStorage.getItem('studyProgresses');
+		const existingStudyProgresses: StudyProgressItem[] = studyProgresses ? JSON.parse(studyProgresses) : [];
+		const filteredStudyProgresses = existingStudyProgresses.filter((studyProgress) => studyProgress.id !== id);
+		localStorage.setItem('studyProgresses', JSON.stringify(filteredStudyProgresses));
 		return true;
 	},
 };
