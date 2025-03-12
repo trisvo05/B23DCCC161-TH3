@@ -1,0 +1,40 @@
+.container {
+    padding: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+  }
+  
+  .add-subject-button {
+    margin-bottom: 20px;
+  }
+  
+  .subject-table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ant-table-thead > tr > th {
+    background-color: #fafafa;
+    font-weight: bold;
+    text-align: center; /* Center text in header */
+  }
+  
+  .ant-table-tbody > tr > td {
+    text-align: center; /* Center text in body */
+  }
+  
+  .ant-table-pagination {
+    margin-right: 20px;
+  }
+  
+  .ant-table {
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Add space between rows */
+  }
+  
+  .ant-table-tbody > tr {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }

@@ -12,12 +12,12 @@ const StudyProgressForm: FC<StudyProgressFormProps> = ({ initialValues, onSubmit
 
 	return (
 		<Form form={form} initialValues={initialValues || {}} onFinish={onSubmit} layout='vertical'>
-			<Form.Item name='Môn học' label='Môn học' rules={[{ required: true, message: 'Vui lòng nhập môn học của bạn!' }]}>
+			<Form.Item name='subject' label='Môn học' rules={[{ required: true, message: 'Vui lòng nhập môn học của bạn!' }]}>
 				<Input placeholder='Nhập môn học' />
 			</Form.Item>
 
 			<Form.Item
-				name='Mục tiêu'
+				name='task'
 				label='Mục tiêu'
 				rules={[{ required: true, message: 'Hãy nhập mục tiêu cho môn này!' }]}
 			>
