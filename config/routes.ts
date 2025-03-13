@@ -36,7 +36,33 @@
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
+	{
+		path: '/lich_hen',
+		name: 'LichHen',
+		component: './LichHen/LichHen',
+		icon: 'ArrowsAltOutlined',
+	},
+	// {
+	// 	path:'/nhan_vien-dich_vu',
+	// 	name :'Quản lý Nhân viên và Dịch vụ',
+	// 	icon :'ArrowsAltOutlined',
+	// 	routes : [
+	// 		{
+	// 			path:'/nhan_vien',
+	// 			name :'Quản lý Nhân viênviên',
+	// 			icon :'ArrowsAltOutlined',
+	// 			component :'./NhanVienNhanVien',
+	// 		},
+	// 		{
+	// 			path:'/dich_vuvu',
+	// 			name :'Quản lý Dịch vụ',
+	// 			icon :'ArrowsAltOutlined',
+	// 			component :,
+	// 		}
+	// 	]
 
+
+	// }
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
