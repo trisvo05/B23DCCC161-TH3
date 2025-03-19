@@ -10,9 +10,7 @@ const BaoCao: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(moment());
 
   const fetchStatistics = async (date: moment.Moment) => {
-    const appointmenconsole.log('Appointment Statistics:', appointmentStats);
-console.log('Revenue Statistics:', revenueStats);
-console.log('Selected Date:', selectedDate);tData = await getAppointmentStatistics(date);
+    const appointmentData = await getAppointmentStatistics(date);
     const revenueData = await getRevenueStatistics(date);
     setAppointmentStats(appointmentData);
     setRevenueStats(revenueData);
