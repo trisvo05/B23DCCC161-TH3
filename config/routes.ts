@@ -42,6 +42,13 @@
 		component: './LichHen/LichHen',
 		icon: 'ArrowsAltOutlined',
 	},
+
+	{
+		path: '/baocao',
+		name: 'Thống kê và Báo cáo',
+		component: './baocao/baocao',
+		icon: 'ArrowsAltOutlined',
+	},
 	// {
 	// 	path:'/nhan_vien-dich_vu',
 	// 	name :'Quản lý Nhân viên và Dịch vụ',
