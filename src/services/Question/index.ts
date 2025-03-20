@@ -43,7 +43,6 @@ export const addQuestion = (question: Omit<Question, 'id' | 'createdAt'>): Quest
     const newQuestion: Question = {
         ...question,
         id: Date.now().toString(),
-        createdAt: Date.now()
     };
     
     const updatedQuestions = [...questions, newQuestion];

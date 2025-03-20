@@ -94,7 +94,7 @@ const KnowledgePage: React.FC = () => {
     <div className="container">
       {/* Tiêu đề trang */}
       <Title level={2} style={{ textAlign: 'center', marginBottom: 20 }}>
-        Quản lý Khối Kiến Thức
+        Quản lý khối kiến thức
       </Title>
 
       {/* Nút thêm khối kiến thức - căn trái */}

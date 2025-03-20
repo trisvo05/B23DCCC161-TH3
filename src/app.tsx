@@ -32,6 +32,14 @@ export async function getInitialState(): Promise<IInitialState> {
 	};
 }
 
+import { initializeLocalStorage } from './utils/initializeData';
+
+// export function render(oldRender: () => void) {
+//   // Khởi tạo dữ liệu từ JSON
+//   initializeLocalStorage();
+//   oldRender();
+// }
+
 // Tobe removed
 const authHeaderInterceptor = (url: string, options: RequestOptionsInit) => ({});
 

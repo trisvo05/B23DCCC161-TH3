@@ -18,5 +18,4 @@ export interface Question {
     content: string;      // Nội dung câu hỏi
     difficulty: DifficultyLevel; // Độ khó
     knowledgeBlockId: string; // ID khối kiến thức
-    createdAt: number;    // Thời gian tạo
 }

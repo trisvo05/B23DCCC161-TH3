@@ -10,9 +10,34 @@ interface KnowledgeFormProps {
   initialData: any;
 }
 
-// Hàm tạo ID duy nhất dựa trên timestamp và số ngẫu nhiên
+// Hàm tạo ID đơn giản dựa trên số thứ tự
 const generateUniqueId = () => {
-  return `kb_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+  // Định nghĩa kiểu dữ liệu cho khối kiến thức
+  interface KnowledgeBlock {
+    id: string;
+    name: string;
+    subjects: string[];
+  }
+
+  // Lấy danh sách khối kiến thức hiện có
+  const knowledgeBlocks = getFromLocalStorage('knowledgeBlocks') || [];
+  
+  // Nếu không có khối kiến thức nào, bắt đầu từ 1
+  if (knowledgeBlocks.length === 0) {
+    return "1";
+  }
+  
+  // Tìm ID lớn nhất hiện tại
+  const maxId = Math.max(
+    ...knowledgeBlocks.map((block: KnowledgeBlock) => {
+      // Chuyển ID sang số nếu có thể
+      const numericId = parseInt(block.id);
+      return isNaN(numericId) ? 0 : numericId;
+    })
+  );
+  
+  // Trả về ID mới là số lớn nhất + 1, dạng chuỗi
+  return String(maxId + 1);
 };
 
 const KnowledgeForm: React.FC<KnowledgeFormProps> = ({
