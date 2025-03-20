@@ -42,6 +42,64 @@
 		component: './LichHen/LichHen',
 		icon: 'ArrowsAltOutlined',
 	},
+	{
+		path: '/lich_hen',
+		name: 'Lịch Hẹn',
+		component: './LichHen/LichHen',
+		icon: 'ArrowsAltOutlined',
+	},
+	{
+		path: '/dich-vu',
+		name: 'Dịch vụ',
+		icon: 'AppstoreOutlined',
+		routes: [
+			{	
+				path: '/dich-vu/dat-lich',
+				name: 'Đặt lịch',
+				component: './DichVu/DatLich/index',
+			},
+			
+			{
+				path: '/dich-vu/danh-gia',
+				name: 'Đánh giá',
+			},
+
+
+			{
+				path: '/dich-vu/quan-ly',
+				name: 'Quản lý',
+				routes: 
+				[
+					{
+						path: '/dich-vu/quan-ly/nhan-vien',
+						name: 'Quản lý nhân viên',
+						component: './DichVu/QuanLy/NhanVien/Employee',
+					},
+
+					{
+						path: '/dich-vu/quan-ly/dich-vu',
+						name: 'Quản lý dịch vụ',
+						component: './DichVu/QuanLy/DichVu/Service',
+
+					},
+		
+					{
+						path: '/dich-vu/quan-ly/lich-hen',
+						name: 'Quản lý lịch hẹn',
+						component: './DichVu/QuanLy/LichHen/index',
+					},
+		
+					{
+						path: '/dich-vu/quan-ly/phan-hoi-danh-gia',
+						name: 'Phản hồi đánh giá',
+					},
+		
+					{
+						path: '/dich-vu/quan-ly/thong-ke',
+						name: 'Thống kê',
+					},
+				]
+			},
 
 	{
 		path: '/baocao',

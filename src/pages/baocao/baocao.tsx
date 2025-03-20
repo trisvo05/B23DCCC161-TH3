@@ -4,7 +4,7 @@ import { getAppointmentStatistics, getRevenueStatistics } from '@/utils/reportSe
 import moment from 'moment';
 import { Line } from '@ant-design/charts';
 
-const BaoCao: React.FC = () => {
+const baocao: React.FC = () => {
   const [appointmentStats, setAppointmentStats] = useState([]);
   const [revenueStats, setRevenueStats] = useState([]);
   const [selectedDate, setSelectedDate] = useState(moment());
@@ -39,4 +39,4 @@ const BaoCao: React.FC = () => {
   );
 };
 
-export default BaoCao;
+export default baocao;
