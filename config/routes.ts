@@ -113,7 +113,12 @@
 			},
 		]
 	},
-	
+	{
+		path: '/danhgia',
+		name: 'Đánh giá',
+		component: './DanhGia/RewiewSystem',
+		icon: 'ArrowsAltOutlined',
+	},
 	{
 		path: '/baocao',
 		name: 'Thống kê và Báo cáo',
