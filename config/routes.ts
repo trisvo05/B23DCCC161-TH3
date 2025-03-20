@@ -43,12 +43,23 @@
 		icon: 'ArrowsAltOutlined',
 	},
 	{
-		path: '/lich_hen',
-		name: 'Lịch Hẹn',
-		component: './LichHen/LichHen',
-		icon: 'ArrowsAltOutlined',
+		path: '/Admin',
+		name: 'Admin',
+		icon: 'LockOutlined',
+		routes: [
+			{
+				path: '/Admin/Employee',
+				name: 'Employee',
+				component: './Admin/Employee',
+			},
+			{
+				path: 'Admin/Service',
+				name: 'Service',
+				component: './Admin/Service',
+			},
+		],
 	},
-	{
+	{	
 		path: '/dich-vu',
 		name: 'Dịch vụ',
 		icon: 'AppstoreOutlined',
@@ -100,7 +111,9 @@
 					},
 				]
 			},
-
+		]
+	},
+	
 	{
 		path: '/baocao',
 		name: 'Thống kê và Báo cáo',
