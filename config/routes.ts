@@ -134,6 +134,7 @@
 			{
 				path: '/dich-vu/danh-gia',
 				name: 'Đánh giá',
+				component: './DichVu/DanhGia/index',
 			},
 
 
@@ -164,11 +165,13 @@
 					{
 						path: '/dich-vu/quan-ly/phan-hoi-danh-gia',
 						name: 'Phản hồi đánh giá',
+						component: './DichVu/QuanLy/DanhGia/index',
 					},
 		
 					{
 						path: '/dich-vu/quan-ly/thong-ke',
 						name: 'Thống kê',
+						component: './DichVu/QuanLy/ThongKe/index',
 					},
 				]
 			},

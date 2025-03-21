@@ -182,33 +182,40 @@ const AppointmentManager: React.FC = () => {
       title: 'Họ tên khách hàng',
       dataIndex: 'customerName',
       key: 'customerName',
+      align: 'center',
     },
     {
       title: 'Số điện thoại',
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
+      align: 'center',
     },
     {
       title: 'Dịch vụ',
       dataIndex: 'serviceId',
       key: 'serviceId',
       render: (serviceId: number) => getServiceName(serviceId),
+      align: 'center',
     },
     {
       title: 'Thời gian',
       key: 'time',
       render: (record: AppointmentData) => formatDateTime(record.appointmentDate, record.appointmentTime),
+      align: 'center',
     },
     {
       title: 'Nhân viên',
       dataIndex: 'employeeId',
       key: 'employeeId',
+      align: 'center',
       render: (employeeId?: number) => employeeId ? getEmployeeName(employeeId) : <Tag color="orange">Chưa phân công</Tag>,
+      
     },
     {
       title: 'Trạng thái',
       dataIndex: 'status',
       key: 'status',
+      align: 'center',
       render: (status: string) => {
         const statusInfo = getStatusText(status);
         return <Tag color={statusInfo.color}>{statusInfo.text}</Tag>;
@@ -217,6 +224,7 @@ const AppointmentManager: React.FC = () => {
     {
       title: 'Thao tác',
       key: 'action',
+      align: 'center',
       render: (_, record: AppointmentData) => {
         // Kiểm tra xem lịch hẹn đã qua hay chưa
         const appointmentTime = new Date(`${record.appointmentDate} ${record.appointmentTime}`);
@@ -336,7 +344,7 @@ const AppointmentManager: React.FC = () => {
       {/* Modal phân công nhân viên */}
       <Modal
         title="Phân công nhân viên"
-        open={assignEmployeeModalVisible}
+        visible={assignEmployeeModalVisible}
         onCancel={() => setAssignEmployeeModalVisible(false)}
         onOk={confirmAssignEmployee}
         confirmLoading={loading}

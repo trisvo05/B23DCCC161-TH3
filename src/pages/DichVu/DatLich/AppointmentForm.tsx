@@ -247,7 +247,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ visible, onCancel, on
 
   const disabledTime = useMemo(() => {
     return () => {
-      const hours = [];
+      const hours: number[] = [];
       // Giả sử giờ làm việc là từ 8:00 - 18:00
       for (let i = 0; i < 8; i++) hours.push(i);
       for (let i = 18; i < 24; i++) hours.push(i);

@@ -56,7 +56,7 @@ const AppointmentDetail: React.FC<AppointmentDetailProps> = ({
   return (
     <Modal
       title="Chi tiết lịch hẹn"
-      open={visible}
+      visible={visible}
       onCancel={onClose}
       width={700}
       footer={[
